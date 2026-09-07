@@ -217,11 +217,19 @@ class Client
      */
     protected function prepareOptions(array $options): array
     {
-        $options['headers'] = array_merge([
-            'Authorization' => $this->token,
+        $defaults = [
             'Accept' => 'application/json',
             'User-Agent' => 'maya719-clickup-php',
-        ], $options['headers'] ?? []);
+        ];
+
+        // Guzzle 8 validates header values strictly, so send no Authorization
+        // header at all rather than an empty one when no token is configured.
+        // ClickUp answers 401 either way, and authMessage() explains the cause.
+        if ($this->token !== '') {
+            $defaults['Authorization'] = $this->token;
+        }
+
+        $options['headers'] = array_merge($defaults, $options['headers'] ?? []);
 
         $options[RequestOptions::HTTP_ERRORS] = false;
 

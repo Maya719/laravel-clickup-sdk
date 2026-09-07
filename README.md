@@ -8,6 +8,17 @@ A PHP SDK and Laravel package for the [ClickUp API v2](https://developer.clickup
 - Laravel service provider, facade, webhook receiver route and signature verification
 - Works fine outside Laravel as a plain PHP SDK
 
+## Requirements
+
+| | Supported |
+| --- | --- |
+| PHP | 8.2, 8.3, 8.4 |
+| Laravel | 10, 11, 12, 13 |
+| Guzzle | 7.8+ and 8.x |
+
+The package is tested against both the oldest and newest of those combinations
+(Guzzle 7 with Laravel 12, and Guzzle 8 with Laravel 13).
+
 ## Installation
 
 ```bash
